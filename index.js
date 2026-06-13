@@ -62,14 +62,23 @@ const profit = steamNet - buyPrice;
             color = "#4a431f";
             profitable++;
         }
+ 
+let aiScore = Math.floor(
+    (profit * 0.08) +
+    ((skin.quantity || 0) * 2)
+);
+
+if(aiScore > 100) aiScore = 100;
+if(aiScore < 0) aiScore = 0;
 
         return {
-            ...skin,
-            steamNet,
-            profit,
-            status,
-            color
-        };
+    ...skin,
+    steamNet,
+    profit,
+    status,
+    color,
+    aiScore
+};
     });
 
     sortedSkins.sort((a, b) => b.profit - a.profit);
@@ -90,8 +99,7 @@ ${skin.market_hash_name}
 <td>${(skin.min_price || 0).toFixed(2)} €</td>
             <td>${skin.steamNet.toFixed(2)} zł</td>
             <td>${skin.profit.toFixed(2)} zł</td>
-            <td>${Math.floor(Math.random()*40)+60}/100</td>
-            <td>▁▂▄▆█</td>
+            <td>${skin.aiScore}/100</td>
         </tr>
         `;
     });
@@ -238,7 +246,6 @@ onkeyup="filterTable()"
 <th>🏪 Steam</th>
 <th>📈 Zysk</th>
 <th>🤖 AI</th>
-<th>📊 Trend</th>
 </tr>
 
 ${rows}
