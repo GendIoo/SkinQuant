@@ -176,17 +176,6 @@ onkeyup="filterTable()"
 />
 <br><br>
 
-<select id="profitFilter" onchange="filterTable()">
-    <option value="0">Wszystkie zyski</option>
-    <option value="5">5 zł+</option>
-    <option value="10">10 zł+</option>
-    <option value="20">20 zł+</option>
-    <option value="50">50 zł+</option>
-    <option value="100">100 zł+</option>
-</select>
-
-<h1>TEST123</h1>
-
 <br><br>
 
 <table id="skinsTable">
