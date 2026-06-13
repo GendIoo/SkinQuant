@@ -210,14 +210,19 @@ tr:hover{
 
 </div>
 
-<select id="profitFilter" onchange="filterTable()">
-    <option value="0">Wszystkie</option>
-    <option value="5">>$5</option>
-    <option value="10">>$10</option>
-    <option value="20">>$20</option>
-    <option value="50">>$50</option>
-    <option value="100">>$100</option>
-</select>
+<input
+id="minProfit"
+type="number"
+placeholder="Min zysk"
+oninput="filterTable()"
+/>
+
+<input
+id="maxProfit"
+type="number"
+placeholder="Max zysk"
+oninput="filterTable()"
+/>
 
 <select id="viewMode" onchange="filterTable()">
     <option value="all">🌍 Wszystkie</option>
@@ -268,8 +273,12 @@ document.getElementById("search")
 .toLowerCase();
 
 let minProfit = parseFloat(
-document.getElementById("profitFilter").value
-);
+document.getElementById("minProfit").value
+) || 0;
+
+let maxProfit = parseFloat(
+document.getElementById("maxProfit").value
+) || Infinity;
 
 let viewMode =
 document.getElementById("viewMode").value;
@@ -319,8 +328,9 @@ if(match){
 
 if (
     match &&
-    profit >= minProfit
-) {
+    profit >= minProfit &&
+    profit <= maxProfit
+) }
     tr[i].style.display = "";
     visibleRows++;
 }
