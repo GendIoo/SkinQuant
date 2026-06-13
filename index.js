@@ -76,9 +76,7 @@ const profit = steamNet - buyPrice;
 
     let rows = "";
 
-const top100 = sortedSkins.slice(0,100);
-
-top100.forEach(skin => {
+    sortedSkins.forEach(skin => {
 
         rows += `
         <tr style="background:${skin.color}">
@@ -207,6 +205,11 @@ tr:hover{
     <option value="100">>$100</option>
 </select>
 
+<select id="viewMode" onchange="filterTable()">
+    <option value="all">🌍 Wszystkie</option>
+    <option value="100">🔥 TOP 100</option>
+</select>
+
 <input
 id="search"
 type="text"
@@ -250,11 +253,19 @@ let minProfit = parseFloat(
 document.getElementById("profitFilter").value
 );
 
+let viewMode =
+document.getElementById("viewMode").value;
+
 let tr =
 document.getElementById("skinsTable")
 .getElementsByTagName("tr");
 
 for(let i=1;i<tr.length;i++){
+
+if(viewMode === "100" && i > 100){
+    tr[i].style.display="none";
+    continue;
+}
 
 let td =
 tr[i].getElementsByTagName("td")[0];
