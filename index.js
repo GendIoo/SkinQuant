@@ -80,7 +80,13 @@ const profit = steamNet - buyPrice;
 
         rows += `
         <tr style="background:${skin.color}">
-            <td>${skin.market_hash_name}</td>
+            <td>
+<a href="https://skinport.com/market?search=${encodeURIComponent(skin.market_hash_name)}"
+target="_blank"
+style="color:white;text-decoration:none;">
+${skin.market_hash_name}
+</a>
+</td>
 <td>${(skin.min_price || 0).toFixed(2)} €</td>
             <td>${skin.steamNet.toFixed(2)} zł</td>
             <td>${skin.profit.toFixed(2)} zł</td>
@@ -211,7 +217,7 @@ onkeyup="filterTable()"
 <th>Status</th>
 </tr>
 
-${rows}
+${rows}}
 
 </table>
 
