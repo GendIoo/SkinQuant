@@ -76,7 +76,9 @@ const profit = steamNet - buyPrice;
 
     let rows = "";
 
-    sortedSkins.forEach(skin => {
+const top100 = sortedSkins.slice(0,100);
+
+top100.forEach(skin => {
 
         rows += `
         <tr style="background:${skin.color}">
@@ -188,6 +190,10 @@ tr:hover{
 
 <div class="card">
 💰 Okazji: ${profitable} 
+</div>
+
+<div class="card">
+🔥 TOP 100
 </div>
 
 </div>
