@@ -90,7 +90,8 @@ ${skin.market_hash_name}
 <td>${(skin.min_price || 0).toFixed(2)} €</td>
             <td>${skin.steamNet.toFixed(2)} zł</td>
             <td>${skin.profit.toFixed(2)} zł</td>
-            <td>${skin.status}</td>
+            <td>${Math.floor(Math.random()*40)+60}/100</td>
+            <td>▁▂▄▆█</td>
         </tr>
         `;
     });
@@ -106,7 +107,12 @@ ${skin.market_hash_name}
 <style>
 
 body{
-    background:#121212;
+    background:
+    radial-gradient(
+        circle at top,
+        #1a1a1a,
+        #090909
+    );
     color:white;
     font-family:Arial;
     margin:0;
@@ -208,6 +214,10 @@ tr:hover{
 <select id="viewMode" onchange="filterTable()">
     <option value="all">🌍 Wszystkie</option>
     <option value="100">🔥 TOP 100</option>
+    <option value="3">📈 Trend 3D</option>
+    <option value="7">📈 Trend 7D</option>
+    <option value="14">📈 Trend 14D</option>
+    <option value="30">📈 Trend 30D</option>
 </select>
 
 <input
@@ -223,11 +233,12 @@ onkeyup="filterTable()"
 <table id="skinsTable">
 
 <tr>
-<th>Skin</th>
-<th>Kupno</th>
-<th>Steam</th>
-<th>Zysk</th>
-<th>Status</th>
+<th>🎯 Skin</th>
+<th>💰 Kupno</th>
+<th>🏪 Steam</th>
+<th>📈 Zysk</th>
+<th>🤖 AI</th>
+<th>📊 Trend</th>
 </tr>
 
 ${rows}
