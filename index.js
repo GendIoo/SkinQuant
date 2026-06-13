@@ -39,7 +39,7 @@ app.get("/", async (req, res) => {
   console.log("Skiny odświeżone");
 }
 
-const skins = cachedSkins.slice(0, 2500);
+const skins = cachedSkins.slice(0, 25000);
 
 
     let profitable = 0;
