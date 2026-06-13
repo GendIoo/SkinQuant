@@ -293,8 +293,7 @@ tr[i].getElementsByTagName("td")[3];
 
 if(td){
 
-let txt =
-td.textContent || td.innerText;
+let txt = td.innerText.toLowerCase();
 
 let profit = 0;
 
@@ -304,28 +303,32 @@ profitTd.textContent.replace("zł","").trim()
 );
 }
 
-let words = filter.split(" ");
+let words = filter.trim().split(/\s+/);
 
 let match = words.every(word =>
 txt.toLowerCase().includes(word)
 );
 
-if(
+console.log("SZUKAM:", filter);
+console.log("TEKST:", txt);
+console.log("MATCH:", match);
+
+if (
     match &&
     profit >= minProfit
-){
-    tr[i].style.display="";
+) {
+    tr[i].style.display = "";
     visibleRows++;
 }
-else{
-    tr[i].style.display="none";
+else {
+    tr[i].style.display = "none";
 }
-tr[i].style.display="none";
-  }
 
- }
+} // if(td)
 
-} 
+} // for(...)
+
+ 
 
 document.getElementById("resultsCount").innerHTML =
 "📊 Pokazano: " + visibleRows;
