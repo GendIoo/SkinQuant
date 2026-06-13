@@ -185,7 +185,10 @@ onkeyup="filterTable()"
     <option value="100">100 zł+</option>
 </select>
 
+<h1>TEST123</h1>
+
 <br><br>
+
 <table id="skinsTable">
 
 <tr>
