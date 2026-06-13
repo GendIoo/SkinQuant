@@ -26,7 +26,7 @@ app.get("/", async (req, res) => {
     }
 );
 
-const skins = response.data.slice(0, 100);
+const skins = response.data.slice(0, 25000);
 
     let profitable = 0;
 
