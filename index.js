@@ -311,13 +311,15 @@ txt.toLowerCase().includes(word)
 );
 
 if(
-match &&
-profit >= minProfit
-)
-tr[i].style.display="";
-visibleRows++;
+    match &&
+    profit >= minProfit
+){
+    tr[i].style.display="";
+    visibleRows++;
 }
 else{
+    tr[i].style.display="none";
+}
 tr[i].style.display="none";
   }
 
