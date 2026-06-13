@@ -5,6 +5,9 @@ const axios = require("axios");
 
 const app = express();
 
+let cachedSkins = [];
+let lastUpdate = 0;
+
 // const skins = require("./skins.json");
 
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -12,21 +15,32 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 app.get("/", async (req, res) => {
 
-    const response = await axios.get(
+ if (
+  cachedSkins.length === 0 ||
+  Date.now() - lastUpdate > 5 * 60 * 1000
+) {
+  const response = await axios.get(
     "https://api.skinport.com/v1/items",
     {
-        params: {
-            app_id: 730,
-            currency: "EUR"
-        },
-        auth: {
-            username: CLIENT_ID,
-            password: CLIENT_SECRET
-        }
+      params: {
+        app_id: 730,
+        currency: "EUR"
+      },
+      auth: {
+        username: CLIENT_ID,
+        password: CLIENT_SECRET
+      }
     }
-);
+  );
 
-const skins = response.data.slice(0, 25000);
+  cachedSkins = response.data;
+  lastUpdate = Date.now();
+
+  console.log("Skiny odświeżone");
+}
+
+const skins = cachedSkins.slice(0, 2500);
+
 
     let profitable = 0;
 
