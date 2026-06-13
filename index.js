@@ -231,6 +231,8 @@ ${rows}
 
 function filterTable(){
 
+console.log("filter działa");
+
 let visibleRows = 0;
 
 let filter =
@@ -263,7 +265,7 @@ let profit = 0;
 
 if (profitTd) {
 profit = parseFloat(
-profitTd.textContent.replace("€","").trim()
+profitTd.textContent.replace("zł","").trim()
 );
 }
 
@@ -276,15 +278,16 @@ visibleRows++;
 }
 else{
 tr[i].style.display="none";
-}
+  }
 
-}
+ }
+
+} 
 
 document.getElementById("resultsCount").innerHTML =
 "📊 Pokazano: " + visibleRows;
 
-} // koniec filterTable()
-
+} 
 
 </script>
 
