@@ -173,17 +173,21 @@ tr:hover{
 <div class="container">
 
 <div class="logo">
-🚀 SkinQuant <span class="version">v6</span>
+🚀 SkinQuant <span class="version">v7</span>
 </div>
 
 <div class="stats">
+
+<div class="card" id="resultsCount">
+📊 Pokazano: ${skins.length}
+</div>
 
 <div class="card">
 📦 Skinów: ${skins.length}
 </div>
 
 <div class="card">
-💰 Okazji: ${profitable}
+💰 Okazji: ${profitable} 
 </div>
 
 </div>
@@ -217,7 +221,7 @@ onkeyup="filterTable()"
 <th>Status</th>
 </tr>
 
-${rows}}
+${rows}
 
 </table>
 
@@ -226,6 +230,8 @@ ${rows}}
 <script>
 
 function filterTable(){
+
+let visibleRows = 0;
 
 let filter =
 document.getElementById("search")
@@ -266,6 +272,7 @@ txt.toLowerCase().indexOf(filter) > -1 &&
 profit >= minProfit
 ){
 tr[i].style.display="";
+visibleRows++;
 }
 else{
 tr[i].style.display="none";
@@ -273,9 +280,11 @@ tr[i].style.display="none";
 
 }
 
-}
+document.getElementById("resultsCount").innerHTML =
+"📊 Pokazano: " + visibleRows;
 
-}
+} // koniec filterTable()
+
 
 </script>
 
