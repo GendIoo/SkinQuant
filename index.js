@@ -190,8 +190,8 @@ tr:hover{
 💰 Okazji: ${profitable} 
 </div>
 
-<div class="card">
-🔥 TOP 100
+<div class="card" id="viewInfo">
+🌍 Wszystkie
 </div>
 
 </div>
@@ -303,6 +303,11 @@ tr[i].style.display="none";
 
 document.getElementById("resultsCount").innerHTML =
 "📊 Pokazano: " + visibleRows;
+
+document.getElementById("viewInfo").innerHTML =
+viewMode === "100"
+? "🔥 TOP 100"
+: "🌍 Wszystkie";
 
 } 
 
