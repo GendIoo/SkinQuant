@@ -304,10 +304,16 @@ profitTd.textContent.replace("zł","").trim()
 );
 }
 
+let words = filter.split(" ");
+
+let match = words.every(word =>
+txt.toLowerCase().includes(word)
+);
+
 if(
-txt.toLowerCase().indexOf(filter) > -1 &&
+match &&
 profit >= minProfit
-){
+)
 tr[i].style.display="";
 visibleRows++;
 }
