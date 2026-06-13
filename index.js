@@ -293,7 +293,7 @@ tr[i].getElementsByTagName("td")[3];
 
 if(td){
 
-let txt = td.innerText.toLowerCase();
+let txt = td.textContent.toLowerCase().trim();
 
 let profit = 0;
 
@@ -312,6 +312,10 @@ txt.toLowerCase().includes(word)
 console.log("SZUKAM:", filter);
 console.log("TEKST:", txt);
 console.log("MATCH:", match);
+
+if(match){
+    console.log("ZNALEZIONO:", txt);
+}
 
 if (
     match &&
