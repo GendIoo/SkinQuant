@@ -182,6 +182,15 @@ tr:hover{
 
 </div>
 
+<select id="profitFilter" onchange="filterTable()">
+    <option value="0">Wszystkie</option>
+    <option value="5">>$5</option>
+    <option value="10">>$10</option>
+    <option value="20">>$20</option>
+    <option value="50">>$50</option>
+    <option value="100">>$100</option>
+</select>
+
 <input
 id="search"
 type="text"
@@ -217,6 +226,10 @@ document.getElementById("search")
 .value
 .toLowerCase();
 
+let minProfit = parseFloat(
+document.getElementById("profitFilter").value
+);
+
 let tr =
 document.getElementById("skinsTable")
 .getElementsByTagName("tr");
@@ -226,12 +239,26 @@ for(let i=1;i<tr.length;i++){
 let td =
 tr[i].getElementsByTagName("td")[0];
 
+let profitTd =
+tr[i].getElementsByTagName("td")[3];
+
 if(td){
 
 let txt =
 td.textContent || td.innerText;
 
-if(txt.toLowerCase().indexOf(filter) > -1){
+let profit = 0;
+
+if (profitTd) {
+profit = parseFloat(
+profitTd.textContent.replace("€","").trim()
+);
+}
+
+if(
+txt.toLowerCase().indexOf(filter) > -1 &&
+profit >= minProfit
+){
 tr[i].style.display="";
 }
 else{
