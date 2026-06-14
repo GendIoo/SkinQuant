@@ -263,93 +263,89 @@ ${rows}
 
 function filterTable(){
 
-console.log("filter działa");
+    let visibleRows = 0;
 
-let visibleRows = 0;
+    let filter =
+    document.getElementById("search")
+    .value
+    .toLowerCase();
 
-let filter =
-document.getElementById("search")
-.value
-.toLowerCase();
+    let minProfit = parseFloat(
+    document.getElementById("minProfit").value
+    ) || 0;
 
-let minProfit = parseFloat(
-document.getElementById("minProfit").value
-) || 0;
+    let maxProfit = parseFloat(
+    document.getElementById("maxProfit").value
+    ) || Infinity;
 
-let maxProfit = parseFloat(
-document.getElementById("maxProfit").value
-) || Infinity;
+    let viewMode =
+    document.getElementById("viewMode").value;
 
-let viewMode =
-document.getElementById("viewMode").value;
+    let tr =
+    document.getElementById("skinsTable")
+    .getElementsByTagName("tr");
 
-let tr =
-document.getElementById("skinsTable")
-.getElementsByTagName("tr");
+    for(let i=1;i<tr.length;i++){
 
-for(let i=1;i<tr.length;i++){
+        if(viewMode === "100" && i > 100){
+            tr[i].style.display = "none";
+            continue;
+        }
 
-if(viewMode === "100" && i > 100){
-    tr[i].style.display="none";
-    continue;
+        let td =
+        tr[i].getElementsByTagName("td")[0];
+
+        let profitTd =
+        tr[i].getElementsByTagName("td")[3];
+
+        if(td){
+
+            let txt =
+            td.textContent.toLowerCase().trim();
+
+            let profit = 0;
+
+            if(profitTd){
+                profit = parseFloat(
+                    profitTd.textContent
+                    .replace("zł","")
+                    .trim()
+                );
+            }
+
+            let words =
+            filter.trim().split(/\s+/);
+
+            let match =
+            words.every(word =>
+                txt.includes(word)
+            );
+
+            if(
+                match &&
+                profit >= minProfit &&
+                profit <= maxProfit
+            ){
+                tr[i].style.display = "";
+                visibleRows++;
+            }
+            else{
+                tr[i].style.display = "none";
+            }
+
+        }
+
+    }
+
+    document.getElementById("resultsCount").innerHTML =
+    "📊 Pokazano: " + visibleRows;
+
+    document.getElementById("viewInfo").innerHTML =
+    viewMode === "100"
+    ? "🔥 TOP 100"
+    : "🌍 Wszystkie";
+
 }
-
-let td =
-tr[i].getElementsByTagName("td")[0];
-
-let profitTd =
-tr[i].getElementsByTagName("td")[3];
-
-if(td){
-
-let txt = td.textContent.toLowerCase().trim();
-
-let profit = 0;
-
-if (profitTd) {
-profit = parseFloat(
-profitTd.textContent.replace("zł","").trim()
-);
-}
-
-let words = filter.trim().split(/\s+/);
-
-let match = words.every(word =>
-txt.toLowerCase().includes(word)
-);
-
-console.log("SZUKAM:", filter);
-console.log("TEKST:", txt);
-console.log("MATCH:", match);
-
-if(match){
-    console.log("ZNALEZIONO:", txt);
-}
-
-if (
-    match &&
-    profit >= minProfit &&
-    profit <= maxProfit
-) {
-    tr[i].style.display = "";
-    visibleRows++;
-}
-else {
-    tr[i].style.display = "none";
-}
-
-
-document.getElementById("resultsCount").innerHTML =
-"📊 Pokazano: " + visibleRows;
-
-document.getElementById("viewInfo").innerHTML =
-viewMode === "100"
-? "🔥 TOP 100"
-: "🌍 Wszystkie";
-
-} 
-
-let sortDirection = 1;
 
 function sortTable(column){
 
