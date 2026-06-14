@@ -330,7 +330,7 @@ if (
     match &&
     profit >= minProfit &&
     profit <= maxProfit
-) }
+) {
     tr[i].style.display = "";
     visibleRows++;
 }
@@ -338,11 +338,6 @@ else {
     tr[i].style.display = "none";
 }
 
-} // if(td)
-
-} // for(...)
-
- 
 
 document.getElementById("resultsCount").innerHTML =
 "📊 Pokazano: " + visibleRows;
