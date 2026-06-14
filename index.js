@@ -5,6 +5,8 @@ const axios = require("axios");
 
 const app = express();
 
+app.use(express.static(__dirname));
+
 let cachedSkins = [];
 let lastUpdate = 0;
 
@@ -133,8 +135,13 @@ body{
 }
 
 .logo{
-    font-size:40px;
-    font-weight:bold;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo-img{
+    width:450px;
+    max-width:100%;
 }
 
 .version{
@@ -187,7 +194,8 @@ tr:hover{
 <div class="container">
 
 <div class="logo">
-🚀 SkinQuant <span class="version">v7</span>
+<img src="/logo.png" class="logo-img">
+<span class="version">v7</span>
 </div>
 
 <div class="stats">
