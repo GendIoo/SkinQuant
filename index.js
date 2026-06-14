@@ -249,8 +249,8 @@ onkeyup="filterTable()"
 <th>🎯 Skin</th>
 <th>💰 Kupno</th>
 <th>🏪 Steam</th>
-<th>📈 Zysk</th>
-<th>🤖 AI</th>
+<th onclick="sortTable(3)">📈 Zysk ↕️</th>
+<th onclick="sortTable(4)">🤖 AI ↕️</th>
 </tr>
 
 ${rows}
@@ -353,6 +353,40 @@ viewMode === "100"
 : "🌍 Wszystkie";
 
 } 
+
+let sortDirection = 1;
+
+function sortTable(column){
+
+let table =
+document.getElementById("skinsTable");
+
+let rows =
+Array.from(table.rows).slice(1);
+
+rows.sort((a,b)=>{
+
+let A =
+parseFloat(
+a.cells[column].innerText
+);
+
+let B =
+parseFloat(
+b.cells[column].innerText
+);
+
+return (B - A) * sortDirection;
+
+});
+
+sortDirection *= -1;
+
+rows.forEach(row =>
+table.appendChild(row)
+);
+
+}
 
 </script>
 
