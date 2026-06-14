@@ -289,8 +289,7 @@ function filterTable(){
 
     let visibleRows = 0;
 
-    let filter =
-    document.getElementById("search")
+    let filter = document.getElementById("search")
     .value
     .toLowerCase();
 
@@ -342,6 +341,9 @@ function filterTable(){
     .toLowerCase()
     .split(/\s+/)
     .filter(word => word.length > 0);
+
+    console.log("FILTER:", filter);
+    console.log("WORDS:", words);
 
 let match =
     words.every(word =>
