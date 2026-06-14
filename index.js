@@ -337,13 +337,20 @@ function filterTable(){
                 );
             }
 
-            let words =
-            filter.trim().split(/\s+/);
+            let words = filter
+    .trim()
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(word => word.length > 0);
 
-            let match =
-            words.every(word =>
-                txt.includes(word)
-            );
+let match =
+    words.every(word =>
+        txt.includes(word)
+    );
+
+console.log(words);
+console.log(txt);
+console.log(match);
 
             if(
                 match &&
