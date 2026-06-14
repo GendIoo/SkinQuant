@@ -101,7 +101,15 @@ ${skin.market_hash_name}
 <td>${(skin.min_price || 0).toFixed(2)} €</td>
             <td>${skin.steamNet.toFixed(2)} zł</td>
             <td>${skin.profit.toFixed(2)} zł</td>
-            <td>${skin.aiScore}/100</td>
+            <td style="
+color:
+${skin.aiScore >= 80 ? '#00ff88' :
+skin.aiScore >= 50 ? '#ffd700' :
+'#ff5555'};
+font-weight:bold;
+">
+${skin.aiScore}/100
+</td>
         </tr>
         `;
     });
@@ -140,7 +148,7 @@ body{
 }
 
 .logo-img{
-    width:450px;
+    width:100px;
     max-width:100%;
 }
 
@@ -155,9 +163,17 @@ body{
 }
 
 .card{
-    background:#1e1e1e;
+    background:#161616;
     padding:15px;
-    border-radius:10px;
+    border-radius:14px;
+    border:1px solid #2a2a2a;
+    box-shadow:0 0 20px rgba(0,150,255,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 25px rgba(0,150,255,0.2);
 }
 
 input{
